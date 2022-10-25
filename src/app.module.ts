@@ -1,10 +1,11 @@
 import { Module } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UsersModule } from "./users/users.module";
 import { DataSource } from "typeorm";
+import { RoleModule } from "./role/role.module";
+import { RoleEntity } from "./role/role.entity";
+import { AuthModule } from "./auth/auth.module";
 import { UsersEntity } from "./users/users.entity";
 
 @Module({
@@ -14,20 +15,22 @@ import { UsersEntity } from "./users/users.entity";
       inject: [ConfigService],
       useFactory: (configModule: ConfigService) => ({
         type: "postgres",
-        port: configModule.get("DATABASE_PORT"),
-        host: configModule.get("DATABASE_HOST"),
-        username: configModule.get("DATABASE_USER_NAME"),
-        password: configModule.get("DATABASE_PASSWORD"),
-        database: configModule.get("DATABASE_NAME"),
-        synchronize: true,
-        entities: [UsersEntity],
+        port: configModule.get("POSTGRES_PORT"),
+        host: configModule.get("POSTGRES_HOST"),
+        username: configModule.get("POSTGRES_USER_NAME"),
+        password: configModule.get("POSTGRES_PASSWORD"),
+        database: configModule.get("POSTGRES_NAME"),
+        synchronize: process.env.NODE_ENV !== "production",
+        entities: [UsersEntity, RoleEntity],
       }),
     }),
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: ".env" }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: `.env.${process.env.NODE_ENV}` }),
     UsersModule,
+    RoleModule,
+    AuthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [],
+  controllers: [],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}

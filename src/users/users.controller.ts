@@ -1,14 +1,15 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 import { UsersService } from "./users.service";
-import { CreateUserDto } from "./dto/create-user.dto";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { UsersEntity } from "./users.entity";
 
+@ApiTags("Users")
 @Controller("/api/users")
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
-  @Post()
-  createUser(@Body() userDto: CreateUserDto) {
-    return this.userService.createUser(userDto);
-  }
+
+  @ApiOperation({ summary: "Get all users" })
+  @ApiResponse({ status: 200, type: [UsersEntity] })
   @Get()
   getAllUsers() {
     return this.userService.getUsers();
