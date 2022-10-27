@@ -7,6 +7,8 @@ import { RoleModule } from "./role/role.module";
 import { RoleEntity } from "./role/role.entity";
 import { AuthModule } from "./auth/auth.module";
 import { UsersEntity } from "./users/users.entity";
+import { QuestionsModule } from './questions/questions.module';
+import { QuestionsEntity } from "./questions/questions.entity";
 
 @Module({
   imports: [
@@ -21,13 +23,14 @@ import { UsersEntity } from "./users/users.entity";
         password: configModule.get("POSTGRES_PASSWORD"),
         database: configModule.get("POSTGRES_NAME"),
         synchronize: process.env.NODE_ENV !== "production",
-        entities: [UsersEntity, RoleEntity],
+        entities: [UsersEntity, RoleEntity, QuestionsEntity],
       }),
     }),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: `.env.${process.env.NODE_ENV}` }),
     UsersModule,
     RoleModule,
     AuthModule,
+    QuestionsModule,
   ],
   providers: [],
   controllers: [],

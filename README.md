@@ -1,3 +1,63 @@
+## Task description
+
+Create RESTful web service for questions &amp; answers system (similar to
+stackoverflow.com).
+The application has 2 roles: admin and user.
+Admin can:
+ update/delete any questions and answers
+ create/update/delete tags
+
+User can:
+ create/update/delete his own questions and answers
+ upvote/downvote other questions and answers
+
+Each question should have:
+ Rating
+ Author
+ Title
+ Description
+ Tags
+ Date of creation
+ Date of update.
+
+An answer should have:
+ Text
+ Author
+ Rating
+ Date of creation
+ Date of update.
+2 API endpoints
+The API should have the following endpoints:
+
+ Register
+ Login
+ Logout
+ Get list of questions
+ Filtering questions by tags
+ Get a question with answers
+ Create question
+ Create answer
+ Update answer (admin or answers’ owner)
+ Update question (admin or questions’ owner)
+ Delete answer (admin or answers’ owner)
+ Delete question (admin or questions’ owner)
+ Upvote to answer
+ Upvote to question
+ Downvote to answer
+ Downvote to question
+ Create tag (admin)
+ Update tag (admin)
+ Delete tag (admin)
+3 General requirements
+1. Nestjs
+2. RESTful
+3. Database: SQL (use Typeorm)
+4. Migrations
+5. N-layer architecture (data access, business logic, web)
+6. Security (JWT tokens, rate limit on sensitive endpoints)
+7. Unit tests (Mocha.js)
+8. Running NodeJS process continuously (pm2 or others)
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>

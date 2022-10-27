@@ -25,7 +25,7 @@ export class AuthService {
     const [user] = await this.userService.getUserByEmail(userDto);
     if (!user) {
       const hashPassword = await bcrypt.hash(userDto.password, 5)
-      const userData: UserDto = await this.userService.createUser({...userDto, password: hashPassword})
+      const userData = await this.userService.createUser({...userDto, password: hashPassword})
       return this.generateToken(userData);
     }
     throw new HttpException("This email is used in another account", HttpStatus.BAD_REQUEST);
@@ -36,7 +36,6 @@ export class AuthService {
   }
 
   private async generateToken(userData: AuthDto) {
-    console.log(userData)
     return { token: this.jwtService.sign({
         email: userData.email,
       }) };
