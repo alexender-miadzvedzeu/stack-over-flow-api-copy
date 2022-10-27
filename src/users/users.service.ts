@@ -51,6 +51,16 @@ export class UsersService {
   }
 
   async getUsers() {
-    return await this.userRepository.find({ relations: { roles: true } })
+    return await this.userRepository.find({
+      relations: {
+        roles: true,
+      },
+      select: {
+        email: true,
+        uuid: true,
+        createdAt: true,
+        updatedAt: true,
+      }
+    })
   }
 }
