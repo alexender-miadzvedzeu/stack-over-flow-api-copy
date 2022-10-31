@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany } from "typeorm";
+import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "../base-entity";
 import { ApiProperty } from "@nestjs/swagger";
 import { RoleEntity } from "../role/role.entity";
@@ -12,7 +12,6 @@ export class UsersEntity extends BaseEntity {
   @Column({ nullable: false })
   password: string;
 
-  @ManyToMany(() => RoleEntity)
-  @JoinTable()
-  roles: RoleEntity[]
+  @ManyToOne(() => RoleEntity, role => role.uuid)
+  role: RoleEntity;
 }

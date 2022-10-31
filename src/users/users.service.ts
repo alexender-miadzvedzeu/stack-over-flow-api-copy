@@ -14,7 +14,7 @@ export class UsersService {
     private dataSource: DataSource
   ) {}
 
-  async getUserByEmail(userDto: AuthDto): Promise<UserDto[]> {
+  async getUserByEmail(userDto: AuthDto) {
     return this.userRepository.find({
       where: {
         email: userDto.email
@@ -35,7 +35,7 @@ export class UsersService {
         await this.dataSource.manager.save(userRole);
       }
       const newUser = new UsersEntity();
-      newUser.roles = [userRole];
+      newUser.role = userRole;
       newUser.email = userDto.email;
       newUser.password = userDto.password;
       const data = await this.dataSource.manager.save(newUser);
@@ -53,7 +53,7 @@ export class UsersService {
   async getUsers() {
     return await this.userRepository.find({
       relations: {
-        roles: true,
+        role: true
       },
       select: {
         email: true,

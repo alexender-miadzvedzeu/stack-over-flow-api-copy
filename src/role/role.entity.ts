@@ -1,6 +1,7 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
 import { BaseEntity } from "../base-entity";
 import { ApiProperty } from "@nestjs/swagger";
+import { UsersEntity } from "../users/users.entity";
 
 @Entity("role")
 export class RoleEntity extends BaseEntity {
@@ -10,4 +11,7 @@ export class RoleEntity extends BaseEntity {
   @ApiProperty({ example: "Some text...", description: "User role description" })
   @Column({ nullable: false })
   description: string;
+
+  @OneToMany(() => UsersEntity, user => user.role)
+  users: RoleEntity[]
 }
