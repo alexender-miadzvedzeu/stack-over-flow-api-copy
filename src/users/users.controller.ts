@@ -7,7 +7,6 @@ import { RolesAuthGuard } from "../auth/roles-auth.guard";
 
 @ApiTags("Users")
 @Controller("/api/users")
-@ApiBearerAuth()
 @Roles("user", "admin")
 @UseGuards(RolesAuthGuard)
 @ApiHeader({

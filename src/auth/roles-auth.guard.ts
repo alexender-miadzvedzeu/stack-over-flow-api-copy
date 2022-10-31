@@ -28,5 +28,4 @@ export class RolesAuthGuard implements CanActivate {
       throw new UnauthorizedException({ message: "Authentication failed" })
     }
   }
-
 }

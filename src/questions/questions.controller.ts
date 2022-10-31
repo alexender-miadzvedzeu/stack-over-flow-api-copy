@@ -1,9 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Headers, UseGuards } from "@nestjs/common";
 import { QuestionsService } from "./questions.service";
-import { QuestionDto } from "./dto/question.dto";
 import { ApiHeader, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { UpdateQuestionDto } from "./dto/update-question.dto";
+import { QuestionsEntity } from "./questions.entity";
+import { Roles } from "../auth/roles-auth.decorator";
+import { RolesAuthGuard } from "../auth/roles-auth.guard";
 
+@Roles("user", "admin")
+@UseGuards(RolesAuthGuard)
 @ApiTags("Questions")
 @ApiHeader({
   name: "Authentication",
@@ -14,7 +18,7 @@ import { UpdateQuestionDto } from "./dto/update-question.dto";
 export class QuestionsController {
   constructor(private readonly questionsService: QuestionsService) {}
 
-  @ApiOperation({ summary: "Create question" })
+  @ApiOperation({ summary: "Get question" })
   @Get()
   async getAllQuestions() {
     return this.questionsService.getAllQuestions()
@@ -22,8 +26,11 @@ export class QuestionsController {
 
   @ApiOperation({ summary: "Create question" })
   @Post()
-  async createQuestion(@Body() question: QuestionDto) {
-    return this.questionsService.createQuestion(question)
+  async createQuestion(
+    @Body() question: QuestionsEntity,
+    @Headers() headers
+  ) {
+    return this.questionsService.createQuestion(question, headers.authorization)
   }
 
   @ApiOperation({ summary: "Update question" })
