@@ -2,7 +2,6 @@ import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository, DataSource } from "typeorm";
 import { UsersEntity } from "./users.entity";
-import { UserDto } from "./dto/user.dto";
 import { AuthDto } from "../auth/dto/auth.dto";
 import { RoleEntity } from "../role/role.entity";
 
@@ -18,6 +17,9 @@ export class UsersService {
     return this.userRepository.find({
       where: {
         email: userDto.email
+      },
+      relations: {
+        role: true
       }
     })
   }

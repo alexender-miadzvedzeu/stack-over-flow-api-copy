@@ -6,6 +6,7 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const swaggerConfig = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle("Stackoverflow copy")
     .setDescription("Stackoverflow copy API description")
     .setVersion("1.0.0")

@@ -12,11 +12,11 @@ User can:
  upvote/downvote other questions and answers
 
 Each question should have:
- Rating
- Author
+ Rating (ManyToMany)
+ Author (ManyToMany)
  Title
  Description
- Tags
+ Tags (ManyToMany)
  Date of creation
  Date of update.
 

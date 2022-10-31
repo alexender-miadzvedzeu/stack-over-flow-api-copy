@@ -7,8 +7,10 @@ import { RoleModule } from "./role/role.module";
 import { RoleEntity } from "./role/role.entity";
 import { AuthModule } from "./auth/auth.module";
 import { UsersEntity } from "./users/users.entity";
-import { QuestionsModule } from './questions/questions.module';
+import { QuestionsModule } from "./questions/questions.module";
 import { QuestionsEntity } from "./questions/questions.entity";
+import { TagsModule } from "./tags/tags.module";
+import { TagsEntity } from "./tags/tags.entity";
 
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { QuestionsEntity } from "./questions/questions.entity";
         password: configModule.get("POSTGRES_PASSWORD"),
         database: configModule.get("POSTGRES_NAME"),
         synchronize: process.env.NODE_ENV !== "production",
-        entities: [UsersEntity, RoleEntity, QuestionsEntity],
+        entities: [UsersEntity, RoleEntity, QuestionsEntity, TagsEntity],
       }),
     }),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: `.env.${process.env.NODE_ENV}` }),
@@ -31,6 +33,7 @@ import { QuestionsEntity } from "./questions/questions.entity";
     RoleModule,
     AuthModule,
     QuestionsModule,
+    TagsModule,
   ],
   providers: [],
   controllers: [],

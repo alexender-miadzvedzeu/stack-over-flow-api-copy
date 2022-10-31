@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { UsersService } from "../users/users.service";
 import { JwtService } from "@nestjs/jwt";
-import { UserDto } from "../users/dto/user.dto";
 import * as bcrypt from "bcrypt";
 import { AuthDto } from "./dto/auth.dto";
+import { UsersEntity } from "../users/users.entity";
 
 @Injectable()
 export class AuthService {
@@ -16,7 +16,7 @@ export class AuthService {
     const [user] = await this.userService.getUserByEmail(userDto);
     if (user) {
       const isValid = await this.validateUser(userDto.password, user.password);
-      if (isValid) return this.generateToken(userDto);
+      if (isValid) return this.generateToken(user);
     }
     throw new HttpException("There is no users found with such credentials", HttpStatus.NOT_FOUND);
   }
@@ -36,9 +36,11 @@ export class AuthService {
     return bcrypt.compare(passwordFromRequest, passwordFromDB)
   }
 
-  private async generateToken(userData: AuthDto) {
+  private async generateToken(userData: UsersEntity) {
+    console.log(userData)
     return { token: this.jwtService.sign({
         email: userData.email,
+        role: userData.role
       }) };
   }
 }
