@@ -9,8 +9,14 @@ export class AnswersEntity extends BaseEntity {
   rating: number;
   @Column({ nullable: false, type: "varchar" })
   description: string;
-  @ManyToOne(() => UsersEntity, user => user.uuid)
+  @ManyToOne(() => UsersEntity, user => user.uuid, {
+    cascade: true,
+    onDelete: "CASCADE"
+  })
   author: UsersEntity
-  @ManyToOne(() => QuestionsEntity, question => question.answers)
+  @ManyToOne(() => QuestionsEntity, question => question.answers, {
+    cascade: true,
+    onDelete: "CASCADE"
+  })
   question: QuestionsEntity
 }

@@ -13,7 +13,6 @@ export class QuestionsService {
     @InjectRepository(QuestionsEntity)
     private readonly questionsRepository: Repository<QuestionsEntity>,
     private dataSource: DataSource,
-    private jwtService: JwtService
 ) {}
 
   async getAllQuestions () {

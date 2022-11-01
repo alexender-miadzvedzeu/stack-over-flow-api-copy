@@ -7,6 +7,9 @@ import { RolesAuthGuard } from "../auth/roles-auth.guard";
 import { QuestionDto } from "./dto/question.dto";
 import { User } from "../auth/user.decorator";
 import { UsersEntity } from "../users/users.entity";
+import { RepositoryDecorator } from "../auth/repository.decorator";
+import { QuestionsEntity } from "./questions.entity";
+import { IsAuthorAuthGuard } from "../auth/isAuthor-auth.guard";
 
 @Roles("user", "admin")
 @UseGuards(RolesAuthGuard)
@@ -32,12 +35,16 @@ export class QuestionsController {
     return this.questionsService.createQuestion(question, user)
   }
 
+  @RepositoryDecorator(QuestionsEntity)
+  @UseGuards(IsAuthorAuthGuard)
   @ApiOperation({ summary: "Update question" })
   @Put()
   updateQuestion(@Body() question: UpdateQuestionDto) {
     return this.questionsService.updateQuestion(question)
   }
 
+  @RepositoryDecorator(QuestionsEntity)
+  @UseGuards(IsAuthorAuthGuard)
   @ApiOperation({ summary: "Delete question" })
   @Delete()
   deleteQuestion(@Query("uuid") uuid: string) {

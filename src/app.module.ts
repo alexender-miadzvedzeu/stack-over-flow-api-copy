@@ -11,7 +11,7 @@ import { QuestionsModule } from "./questions/questions.module";
 import { QuestionsEntity } from "./questions/questions.entity";
 import { TagsModule } from "./tags/tags.module";
 import { TagsEntity } from "./tags/tags.entity";
-import { AnswersModule } from './answers/answers.module';
+import { AnswersModule } from "./answers/answers.module";
 import { AnswersEntity } from "./answers/answers.entity";
 
 @Module({
