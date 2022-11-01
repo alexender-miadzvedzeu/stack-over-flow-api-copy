@@ -5,6 +5,8 @@ import { UpdateQuestionDto } from "./dto/update-question.dto";
 import { Roles } from "../auth/roles-auth.decorator";
 import { RolesAuthGuard } from "../auth/roles-auth.guard";
 import { QuestionDto } from "./dto/question.dto";
+import { User } from "../auth/user.decorator";
+import { UsersEntity } from "../users/users.entity";
 
 @Roles("user", "admin")
 @UseGuards(RolesAuthGuard)
@@ -26,11 +28,8 @@ export class QuestionsController {
 
   @ApiOperation({ summary: "Create question" })
   @Post()
-  createQuestion(
-    @Body() question: QuestionDto,
-    @Headers() headers
-  ) {
-    return this.questionsService.createQuestion(question, headers.authorization)
+  createQuestion(@Body() question: QuestionDto, @User() user: UsersEntity) {
+    return this.questionsService.createQuestion(question, user)
   }
 
   @ApiOperation({ summary: "Update question" })

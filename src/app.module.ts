@@ -32,7 +32,7 @@ import { AnswersEntity } from "./answers/answers.entity";
           RoleEntity,
           QuestionsEntity,
           TagsEntity,
-          AnswersEntity
+          AnswersEntity,
         ],
       }),
     }),

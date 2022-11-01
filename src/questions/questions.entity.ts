@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { BaseEntity } from "../base-entity";
 import { UsersEntity } from "../users/users.entity";
 import { AnswersEntity } from "../answers/answers.entity";
@@ -13,6 +13,6 @@ export class QuestionsEntity extends BaseEntity {
   description: string;
   @ManyToOne(() => UsersEntity, user => user.uuid, { onDelete: "CASCADE" } )
   author: UsersEntity
-  @OneToMany(() => AnswersEntity, answer => answer.uuid)
-  answers: [AnswersEntity]
+  @OneToMany(() => AnswersEntity, answer => answer.question)
+  answers: AnswersEntity[]
 }

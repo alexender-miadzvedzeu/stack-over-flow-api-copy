@@ -8,6 +8,7 @@ import { AuthModule } from "../auth/auth.module";
 @Module({
   imports: [TypeOrmModule.forFeature([QuestionsEntity]), AuthModule],
   controllers: [QuestionsController],
-  providers: [QuestionsService]
+  providers: [QuestionsService],
+  exports: [QuestionsService],
 })
 export class QuestionsModule {}

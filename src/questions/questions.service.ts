@@ -21,7 +21,7 @@ export class QuestionsService {
       return this.questionsRepository.find({
         relations: {
           author: true,
-          // answers: true,
+          answers: true,
         },
         select: {
           uuid: true,
@@ -30,33 +30,20 @@ export class QuestionsService {
           rating: true
         }
       });
-    }catch (e) {
+    } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
   }
 
-  async createQuestion (question: QuestionDto, authorization: string) {
+  async createQuestion (question: QuestionDto, user: UsersEntity) {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
-      const [_, token] = authorization.split(" ");
-      const userData = await this.jwtService.decode(token) as UsersEntity;
-      const userEntity = await this.dataSource.manager.findOne(UsersEntity, {
-        where: {
-          uuid: userData.uuid
-        },
-        select: {
-          uuid: true,
-          email: true,
-          createdAt: true,
-          updatedAt: true
-        }
-      })
       const questionEntity = new QuestionsEntity();
       questionEntity.title = question.title;
       questionEntity.description = question.description;
-      questionEntity.author = userEntity;
+      questionEntity.author = user;
       const newQuestion = await this.dataSource.manager.save(questionEntity);
       await queryRunner.commitTransaction();
       return newQuestion;

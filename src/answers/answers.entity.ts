@@ -11,6 +11,6 @@ export class AnswersEntity extends BaseEntity {
   description: string;
   @ManyToOne(() => UsersEntity, user => user.uuid)
   author: UsersEntity
-  @ManyToOne(() => QuestionsEntity, question => question.uuid)
+  @ManyToOne(() => QuestionsEntity, question => question.answers)
   question: QuestionsEntity
 }
