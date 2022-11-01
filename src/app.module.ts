@@ -11,6 +11,8 @@ import { QuestionsModule } from "./questions/questions.module";
 import { QuestionsEntity } from "./questions/questions.entity";
 import { TagsModule } from "./tags/tags.module";
 import { TagsEntity } from "./tags/tags.entity";
+import { AnswersModule } from './answers/answers.module';
+import { AnswersEntity } from "./answers/answers.entity";
 
 @Module({
   imports: [
@@ -25,7 +27,13 @@ import { TagsEntity } from "./tags/tags.entity";
         password: configModule.get("POSTGRES_PASSWORD"),
         database: configModule.get("POSTGRES_NAME"),
         synchronize: process.env.NODE_ENV !== "production",
-        entities: [UsersEntity, RoleEntity, QuestionsEntity, TagsEntity],
+        entities: [
+          UsersEntity,
+          RoleEntity,
+          QuestionsEntity,
+          TagsEntity,
+          AnswersEntity
+        ],
       }),
     }),
     ConfigModule.forRoot({ isGlobal: true, envFilePath: `.env.${process.env.NODE_ENV}` }),
@@ -34,6 +42,7 @@ import { TagsEntity } from "./tags/tags.entity";
     AuthModule,
     QuestionsModule,
     TagsModule,
+    AnswersModule,
   ],
   providers: [],
   controllers: [],

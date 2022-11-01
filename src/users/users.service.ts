@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository, DataSource } from "typeorm";
 import { UsersEntity } from "./users.entity";
@@ -14,14 +14,18 @@ export class UsersService {
   ) {}
 
   async getUserByEmail(userDto: AuthDto) {
-    return this.userRepository.find({
-      where: {
-        email: userDto.email
-      },
-      relations: {
-        role: true
-      }
-    })
+    try {
+      return this.userRepository.find({
+        where: {
+          email: userDto.email
+        },
+        relations: {
+          role: true,
+        }
+      })
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
+    }
   }
 
   async createUser(userDto: AuthDto) {
@@ -44,25 +48,39 @@ export class UsersService {
       await queryRunner.commitTransaction();
       return data;
     } catch(e) {
-      console.log(e)
       await queryRunner.rollbackTransaction();
-      throw new InternalServerErrorException();
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     } finally {
       await queryRunner.release();
     }
   }
 
   async getUsers() {
-    return await this.userRepository.find({
-      relations: {
-        role: true
-      },
-      select: {
-        email: true,
-        uuid: true,
-        createdAt: true,
-        updatedAt: true,
-      }
-    })
+    try {
+      return await this.userRepository.find({
+        relations: {
+          role: true
+        },
+        select: {
+          email: true,
+          uuid: true,
+          createdAt: true,
+          updatedAt: true,
+        }
+      })
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
+    }
+  }
+
+  async deleteUser (uuid: string) {
+    try {
+      const user = await this.userRepository.findOneBy({ uuid })
+      if (!user) throw new HttpException("User not found", HttpStatus.BAD_REQUEST)
+      return await this.userRepository.remove(user)
+    } catch (e) {
+      console.log(JSON.stringify(e))
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
+    }
   }
 }

@@ -21,9 +21,13 @@ export class QuestionsService {
       return this.questionsRepository.find({
         relations: {
           author: true,
+          // answers: true,
         },
         select: {
           uuid: true,
+          title: true,
+          description: true,
+          rating: true
         }
       });
     }catch (e) {
@@ -65,16 +69,34 @@ export class QuestionsService {
   }
 
   async updateQuestion (question: UpdateQuestionDto) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
     try {
-      return console.log(`Update question: ${question}`)
+      const questionToEdit = await queryRunner.manager.findOne(QuestionsEntity, { where: { uuid: question.uuid }})
+      if (!questionToEdit) throw new HttpException("Question doesn't exists", HttpStatus.NOT_FOUND)
+      await queryRunner.manager.update(QuestionsEntity, questionToEdit.uuid, {
+        title: question.title,
+        description: question.description,
+      })
+      if (question.rating === "inc") await queryRunner.manager.increment(QuestionsEntity, { uuid: questionToEdit.uuid }, "rating", 1)
+      if (question.rating === "decr") await queryRunner.manager.decrement(QuestionsEntity, { uuid: questionToEdit.uuid }, "rating", 1)
+      await queryRunner.commitTransaction();
+      return question.uuid;
     } catch (e) {
+      await queryRunner.rollbackTransaction();
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
+    } finally {
+      await queryRunner.release();
     }
   }
 
   async deleteQuestion (uuid: string) {
     try {
-      return console.log(`Update question: ${uuid}`)
+      const question = await this.questionsRepository.findOneBy({ uuid });
+      if (!question) throw new HttpException("Question not found", HttpStatus.NOT_FOUND);
+      await this.questionsRepository.remove(question);
+      return uuid;
     }catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }

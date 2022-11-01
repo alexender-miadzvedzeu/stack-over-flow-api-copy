@@ -2,13 +2,13 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class UpdateQuestionDto {
   @ApiProperty({title: "uuid", description: "Question uuid", required: true})
-  private readonly uuid: string;
+  public readonly uuid: string;
   @ApiProperty({title: "title", description: "Question title", required: true})
-  private readonly title: string;
-  @ApiProperty({title: "rating", description: "Question rating", required: true})
-  private readonly rating: number;
+  public readonly title: string;
+  @ApiProperty({title: "rating", description: "Question rating", required: false, example: "inc | decr"})
+  public readonly rating: "inc" | "decr";
   @ApiProperty({title: "description", description: "Question description", required: true})
-  private readonly description: string;
-  @ApiProperty({title: "tags", description: "Question tags"})
-  private readonly tags: string[];
+  public readonly description: string;
+  @ApiProperty({title: "tags", description: "Question tags uuid", required: false, example: ["uuid"]})
+  public readonly tags: string[];
 }

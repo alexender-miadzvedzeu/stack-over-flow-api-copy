@@ -12,6 +12,9 @@ export class UsersEntity extends BaseEntity {
   @Column({ nullable: false })
   password: string;
 
-  @ManyToOne(() => RoleEntity, role => role.uuid)
+  @ManyToOne(() => RoleEntity, role => role.uuid, {
+    cascade: true,
+    onDelete: "CASCADE"
+  })
   role: RoleEntity;
 }

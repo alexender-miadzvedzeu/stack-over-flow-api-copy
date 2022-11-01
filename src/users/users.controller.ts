@@ -1,13 +1,13 @@
-import { Controller, Get, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Query, UseGuards } from "@nestjs/common";
 import { UsersService } from "./users.service";
-import { ApiHeader, ApiOperation, ApiResponse, ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { UsersEntity } from "./users.entity";
 import { Roles } from "../auth/roles-auth.decorator";
 import { RolesAuthGuard } from "../auth/roles-auth.guard";
 
 @ApiTags("Users")
 @Controller("/api/users")
-@Roles("user", "admin")
+@Roles("admin")
 @UseGuards(RolesAuthGuard)
 @ApiHeader({
   name: "Authorization",
@@ -23,5 +23,12 @@ export class UsersController {
   @Get()
   getAllUsers() {
     return this.userService.getUsers();
+  }
+
+  @ApiOperation({ summary: "Delete user" })
+  @ApiResponse({ status: 200 })
+  @Delete()
+  deleteUser(@Query("uuid") uuid: string) {
+    return this.userService.deleteUser(uuid);
   }
 }
