@@ -8,6 +8,7 @@ import { AuthModule } from "../auth/auth.module";
 @Module({
   imports: [TypeOrmModule.forFeature([TagsEntity]), AuthModule],
   controllers: [TagsController],
-  providers: [TagsService]
+  providers: [TagsService],
+  exports: [TagsService]
 })
 export class TagsModule {}

@@ -5,12 +5,15 @@ import { QuestionsEntity } from "./questions.entity";
 import { UpdateQuestionDto } from "./dto/update-question.dto";
 import { UsersEntity } from "../users/users.entity";
 import { QuestionDto } from "./dto/question.dto";
+import { UpdateQuestionTagsDto } from "./dto/update-question-tags.dto";
+import { TagsService } from "../tags/tags.service";
 
 @Injectable()
 export class QuestionsService {
   constructor(
     @InjectRepository(QuestionsEntity)
     private readonly questionsRepository: Repository<QuestionsEntity>,
+    private readonly tagsService: TagsService,
     private dataSource: DataSource,
 ) {}
 
@@ -34,6 +37,7 @@ export class QuestionsService {
         where: { uuid },
         relations: {
           answers: true,
+          tags: true
         }
       });
     } catch (e) {
@@ -91,6 +95,20 @@ export class QuestionsService {
       await this.questionsRepository.remove(question);
       return uuid;
     }catch (e) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
+    }
+  }
+
+  async updateQuestionTags (updateQuestionTagsDto: UpdateQuestionTagsDto) {
+    try {
+      const tags = await Promise.all(updateQuestionTagsDto.tagsUuids.map(async tag =>
+        await this.tagsService.getTagById(tag)
+      ));
+      const question = await this.getQuestionByUuid(updateQuestionTagsDto.uuid);
+      question.tags = tags;
+      await this.questionsRepository.save(question);
+      return updateQuestionTagsDto;
+    } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
   }

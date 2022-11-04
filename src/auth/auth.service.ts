@@ -94,6 +94,11 @@ export class AuthService {
   }
 
   async logOut (token: string) {
-    return await this.sessionRepository.delete({ token })
+    try {
+      const session = await this.sessionRepository.findOneBy({ token });
+      return await this.sessionRepository.remove(session);
+    } catch (e) {
+      throw new HttpException("Session not found", HttpStatus.NOT_FOUND)
+    }
   }
 }

@@ -34,7 +34,7 @@ export class AnswersController {
 
   @Roles("user", "admin")
   @RepositoryDecorator(AnswersEntity)
-  @UseGuards(IsAuthorAuthGuard, RolesAuthGuard)
+  @UseGuards(RolesAuthGuard, IsAuthorAuthGuard)
   @ApiOperation({ summary: "Update answer" })
   @ApiResponse({ status: HttpStatus.OK, type: "string", description: "Updated answer uuid" })
   @Put()
@@ -44,7 +44,7 @@ export class AnswersController {
 
   @Roles("user", "admin")
   @RepositoryDecorator(AnswersEntity)
-  @UseGuards(IsAuthorAuthGuard, RolesAuthGuard)
+  @UseGuards(RolesAuthGuard, IsAuthorAuthGuard)
   @ApiOperation({ summary: "Delete answer" })
   @ApiResponse({ status: HttpStatus.OK, type: "string", description: "Deleted answer uuid" })
   @Delete()

@@ -41,8 +41,18 @@ export class TagsService {
 
   async deleteTag (uuid: string ) {
     try {
-      await this.tagsRepository.delete(uuid);
+      const tag = await this.tagsRepository.findOneBy({ uuid })
+      if (!tag) throw new HttpException("Not found", HttpStatus.NOT_FOUND)
+      await this.tagsRepository.remove(tag);
       return uuid;
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
+    }
+  }
+
+  async getTagById (uuid: string ) {
+    try {
+      return await this.tagsRepository.findOneBy({ uuid });
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }

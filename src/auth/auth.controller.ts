@@ -1,9 +1,11 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Post, Headers, UseGuards } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { AuthDto } from "./dto/auth.dto";
 import { AuthResponseDto } from "./dto/auth-response.dto";
 import { AuthLogOutDto } from "./dto/auth-log-out.dto";
+import { Roles } from "./roles-auth.decorator";
+import { RolesAuthGuard } from "./roles-auth.guard";
 
 @ApiTags("Auth")
 @Controller("/api/auth")
@@ -24,10 +26,12 @@ export class AuthController {
     return this.authService.signUp(userDto);
   }
 
+  @Roles("user", "admin")
+  @UseGuards(RolesAuthGuard)
   @ApiOperation({ summary: "Log-out" })
   @ApiResponse({ status: 200 })
-  @Post("/log-out")
-  async logOut(@Body() userDto: AuthLogOutDto) {
-    return this.authService.logOut(userDto.token);
+  @Delete("/log-out")
+  async logOut(@Headers() headers) {
+    return this.authService.logOut(headers.authorization);
   }
 }

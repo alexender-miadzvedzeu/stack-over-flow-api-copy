@@ -12,6 +12,7 @@ import { QuestionsEntity } from "./questions.entity";
 import { IsAuthorAuthGuard } from "../auth/isAuthor-auth.guard";
 import { GetAllQuestionsResponseDto } from "./dto/get-all-questions-response.dto";
 import { GetQuestionByUuidResponseDto } from "./dto/get-question-by-uuid-response.dto";
+import { UpdateQuestionTagsDto } from "./dto/update-question-tags.dto";
 
 @ApiTags("Questions")
 @ApiHeader({
@@ -48,7 +49,7 @@ export class QuestionsController {
 
   @Roles("user", "admin")
   @RepositoryDecorator(QuestionsEntity)
-  @UseGuards(IsAuthorAuthGuard, RolesAuthGuard)
+  @UseGuards(RolesAuthGuard, IsAuthorAuthGuard)
   @ApiOperation({ summary: "Update question" })
   @ApiResponse({ status: HttpStatus.OK, type: "string", description: "Updated question uuid" })
   @Put()
@@ -58,7 +59,7 @@ export class QuestionsController {
 
   @Roles("user", "admin")
   @RepositoryDecorator(QuestionsEntity)
-  @UseGuards(IsAuthorAuthGuard, RolesAuthGuard)
+  @UseGuards(RolesAuthGuard, IsAuthorAuthGuard)
   @ApiOperation({ summary: "Delete question" })
   @ApiResponse({ status: HttpStatus.OK, type: "string", description: "Updated question uuid" })
   @Delete()
@@ -70,7 +71,7 @@ export class QuestionsController {
   @UseGuards(RolesAuthGuard)
   @ApiOperation({ summary: "Update question tags" })
   @Put("/tags")
-  updateQuestionTags(@Body() body: any) {
-    return body;
+  updateQuestionTags(@Body() body: UpdateQuestionTagsDto) {
+    return this.questionsService.updateQuestionTags(body);
   }
 }
