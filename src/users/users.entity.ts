@@ -1,7 +1,8 @@
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 import { BaseEntity } from "../base-entity";
 import { ApiProperty } from "@nestjs/swagger";
 import { RoleEntity } from "../role/role.entity";
+import { SessionsEntity } from "../auth/auth.entity";
 
 @Entity("users")
 export class UsersEntity extends BaseEntity {
@@ -11,6 +12,9 @@ export class UsersEntity extends BaseEntity {
   @ApiProperty({ example: "ABCabc123", description: "User password" })
   @Column({ nullable: false })
   password: string;
+
+  @OneToMany(() => SessionsEntity, session => session.user)
+  sessions: SessionsEntity[]
 
   @ManyToOne(() => RoleEntity, role => role.uuid, {
     cascade: true,

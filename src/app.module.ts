@@ -13,6 +13,7 @@ import { TagsModule } from "./tags/tags.module";
 import { TagsEntity } from "./tags/tags.entity";
 import { AnswersModule } from "./answers/answers.module";
 import { AnswersEntity } from "./answers/answers.entity";
+import { SessionsEntity } from "./auth/auth.entity";
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { AnswersEntity } from "./answers/answers.entity";
           QuestionsEntity,
           TagsEntity,
           AnswersEntity,
+          SessionsEntity,
         ],
       }),
     }),

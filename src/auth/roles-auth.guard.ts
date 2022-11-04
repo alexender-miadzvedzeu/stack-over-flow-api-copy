@@ -3,11 +3,16 @@ import { Observable } from "rxjs";
 import { JwtService } from "@nestjs/jwt";
 import { Reflector } from "@nestjs/core";
 import { ROLES_KEY } from "./roles-auth.decorator";
-import { Repository } from "typeorm";
+import { AuthService } from "./auth.service";
+
 
 @Injectable()
 export class RolesAuthGuard implements CanActivate {
-  constructor(private jwtService: JwtService, private reflector: Reflector) {}
+  constructor(
+    private jwtService: JwtService,
+    private reflector: Reflector,
+    private authService: AuthService,
+    ) {}
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     try {
       const requaredRoles = this.reflector.getAllAndOverride(ROLES_KEY, [
@@ -22,9 +27,15 @@ export class RolesAuthGuard implements CanActivate {
       if (tokenType !== "Bearer" || !token) {
         throw new UnauthorizedException({ message: "Authentication failed" })
       }
-      const user = this.jwtService.verify(token);
-      request.user = user;
-      return requaredRoles.some(role => role === user.role.value);
+      return this.authService.checkSession(token)
+        .then(session => {
+          if (session) {
+            const user = this.jwtService.verify(token);
+            request.user = user;
+            return requaredRoles.some(role => role === user.role.value);
+          }
+          throw new UnauthorizedException({ message: "Authentication failed" })
+        })
     } catch (e) {
       throw new UnauthorizedException({ message: "Authentication failed" })
     }

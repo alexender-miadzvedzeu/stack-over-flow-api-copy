@@ -1,6 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { Observable } from "rxjs";
-import { JwtService } from "@nestjs/jwt";
 import { Reflector } from "@nestjs/core";
 import { DataSource } from "typeorm";
 import { REPOSITORY_KEY } from "./repository.decorator";
@@ -10,7 +9,6 @@ import { EntityTarget } from "typeorm/common/EntityTarget";
 export class IsAuthorAuthGuard implements CanActivate {
   private entity: EntityTarget<any>;
   constructor(
-    private jwtService: JwtService,
     private reflector: Reflector,
     private dataSource: DataSource,
   ) {}

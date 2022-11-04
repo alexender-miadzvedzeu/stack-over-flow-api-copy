@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { ApiHeader, ApiOperation, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { TagsService } from "./tags.service";
 import { TagsEntity } from "./tags.entity";
 import { TagDto } from "./dto/tag.dto";
 import { UpdateTagDto } from "./dto/update-tag.dto";
+import { Roles } from "../auth/roles-auth.decorator";
+import { RolesAuthGuard } from "../auth/roles-auth.guard";
 
 @ApiTags("Tags")
 @ApiHeader({
@@ -11,6 +13,9 @@ import { UpdateTagDto } from "./dto/update-tag.dto";
   description: "Bearer {token}",
   required: true,
 })
+
+@Roles("admin")
+@UseGuards(RolesAuthGuard)
 @Controller("/api/tags")
 export class TagsController {
   constructor(private readonly tagsService: TagsService) {}

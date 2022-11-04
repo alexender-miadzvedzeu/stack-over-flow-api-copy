@@ -3,6 +3,7 @@ import { AuthService } from "./auth.service";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { AuthDto } from "./dto/auth.dto";
 import { AuthResponseDto } from "./dto/auth-response.dto";
+import { AuthLogOutDto } from "./dto/auth-log-out.dto";
 
 @ApiTags("Auth")
 @Controller("/api/auth")
@@ -21,5 +22,12 @@ export class AuthController {
   @Post("/sign-up")
   async signUp(@Body() userDto: AuthDto) {
     return this.authService.signUp(userDto);
+  }
+
+  @ApiOperation({ summary: "Log-out" })
+  @ApiResponse({ status: 200 })
+  @Post("/log-out")
+  async logOut(@Body() userDto: AuthLogOutDto) {
+    return this.authService.logOut(userDto.token);
   }
 }

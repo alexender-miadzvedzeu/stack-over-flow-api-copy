@@ -15,7 +15,7 @@ export class UsersService {
 
   async getUserByEmail(userDto: AuthDto) {
     try {
-      return this.userRepository.find({
+      return this.userRepository.findOne({
         where: {
           email: userDto.email
         },
@@ -59,7 +59,8 @@ export class UsersService {
     try {
       return await this.userRepository.find({
         relations: {
-          role: true
+          role: true,
+          sessions: true,
         },
         select: {
           email: true,

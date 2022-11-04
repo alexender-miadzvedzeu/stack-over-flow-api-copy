@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post, Query, Put, Headers, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Post, Query, Put, Headers, UseGuards, Param } from "@nestjs/common";
 import { QuestionsService } from "./questions.service";
 import { ApiHeader, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { UpdateQuestionDto } from "./dto/update-question.dto";
@@ -23,10 +23,16 @@ import { IsAuthorAuthGuard } from "../auth/isAuthor-auth.guard";
 export class QuestionsController {
   constructor(private readonly questionsService: QuestionsService) {}
 
-  @ApiOperation({ summary: "Get question" })
+  @ApiOperation({ summary: "Get all questions" })
   @Get()
   getAllQuestions() {
     return this.questionsService.getAllQuestions()
+  }
+
+  @ApiOperation({ summary: "Get question by uuid" })
+  @Get(":uuid")
+  getQuestionByUuid(@Param("uuid") uuid: string) {
+    return this.questionsService.getQuestionByUuid(uuid);
   }
 
   @ApiOperation({ summary: "Create question" })
@@ -50,4 +56,15 @@ export class QuestionsController {
   deleteQuestion(@Query("uuid") uuid: string) {
     return this.questionsService.deleteQuestion(uuid);
   }
+
+  @Roles("admin")
+  @UseGuards(RolesAuthGuard)
+  @ApiOperation({ summary: "Update question tags" })
+  @Put("/tags")
+  updateQuestionTags(@Body() body: any) {
+    return body;
+  }
+
+
+
 }

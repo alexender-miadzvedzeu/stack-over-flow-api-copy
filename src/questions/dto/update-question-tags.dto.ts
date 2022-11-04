@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class UpdateQuestionDto {
+export class UpdateQuestionTagsDto {
   @ApiProperty({title: "uuid", description: "Question uuid", required: true})
   public readonly uuid: string;
   @ApiProperty({title: "title", description: "Question title", required: true})

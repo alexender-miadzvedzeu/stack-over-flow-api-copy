@@ -3,7 +3,6 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { DataSource, Repository } from "typeorm";
 import { QuestionsEntity } from "./questions.entity";
 import { UpdateQuestionDto } from "./dto/update-question.dto";
-import { JwtService } from "@nestjs/jwt";
 import { UsersEntity } from "../users/users.entity";
 import { QuestionDto } from "./dto/question.dto";
 
@@ -18,15 +17,23 @@ export class QuestionsService {
   async getAllQuestions () {
     try {
       return this.questionsRepository.find({
-        relations: {
-          author: true,
-          answers: true,
-        },
         select: {
           uuid: true,
           title: true,
           description: true,
-          rating: true
+        }
+      });
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
+    }
+  }
+
+  async getQuestionByUuid (uuid: string) {
+    try {
+      return this.questionsRepository.findOne({
+        where: { uuid },
+        relations: {
+          answers: true,
         }
       });
     } catch (e) {
