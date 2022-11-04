@@ -50,9 +50,9 @@ export class QuestionsService {
       questionEntity.title = question.title;
       questionEntity.description = question.description;
       questionEntity.author = user;
-      const newQuestion = await this.dataSource.manager.save(questionEntity);
+      const { uuid } = await this.dataSource.manager.save(questionEntity);
       await queryRunner.commitTransaction();
-      return newQuestion;
+      return uuid;
     } catch (e) {
       await queryRunner.rollbackTransaction();
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)

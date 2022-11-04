@@ -8,9 +8,9 @@ import { Roles } from "../auth/roles-auth.decorator";
 import { RolesAuthGuard } from "../auth/roles-auth.guard";
 import { AnswersEntity } from "./answers.entity";
 import { UpdateAnswerDto } from "./dto/update-answer.dto";
+import { RepositoryDecorator } from "../auth/repository.decorator";
+import { IsAuthorAuthGuard } from "../auth/isAuthor-auth.guard";
 
-@Roles("user", "admin")
-@UseGuards(RolesAuthGuard)
 @ApiTags("Answers")
 @Controller("/api/answers")
 export class AnswersController {
@@ -23,20 +23,30 @@ export class AnswersController {
     return this.answersService.getAllAnswers()
   }
 
+  @Roles("user", "admin")
+  @UseGuards(RolesAuthGuard)
   @ApiOperation({ summary: "Create answer" })
+  @ApiResponse({ status: HttpStatus.OK, type: "string", description: "Posted answer uuid" })
   @Post()
   addAnswerToQuestion (@Body() answerDto: AnswerDto, @User() user: UsersEntity) {
     return this.answersService.addAnswerToQuestion(answerDto, user)
   }
 
+  @Roles("user", "admin")
+  @RepositoryDecorator(AnswersEntity)
+  @UseGuards(IsAuthorAuthGuard, RolesAuthGuard)
   @ApiOperation({ summary: "Update answer" })
+  @ApiResponse({ status: HttpStatus.OK, type: "string", description: "Updated answer uuid" })
   @Put()
   updateAnswer (@Body() answerDto: UpdateAnswerDto) {
     return this.answersService.updateAnswer(answerDto)
   }
 
+  @Roles("user", "admin")
+  @RepositoryDecorator(AnswersEntity)
+  @UseGuards(IsAuthorAuthGuard, RolesAuthGuard)
   @ApiOperation({ summary: "Delete answer" })
-  @ApiResponse({ status: HttpStatus.OK, type: [AnswersEntity] })
+  @ApiResponse({ status: HttpStatus.OK, type: "string", description: "Deleted answer uuid" })
   @Delete()
   deleteAnswer (@Query("uuid") uuid: string) {
     return this.answersService.deleteAnswer(uuid);

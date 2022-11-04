@@ -22,7 +22,8 @@ export class TagsService {
 
   async createTag (tagDto: TagDto) {
     try {
-      return await this.tagsRepository.save(tagDto);
+      const { uuid } = await this.tagsRepository.save(tagDto);
+      return uuid;
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
@@ -30,7 +31,8 @@ export class TagsService {
 
   async updateTag (tagDto: UpdateTagDto ) {
     try {
-      return await this.tagsRepository.update(tagDto.uuid, { tag: tagDto.tag });
+      await this.tagsRepository.update(tagDto.uuid, { tag: tagDto.tag });
+      return tagDto.uuid;
     } catch (e) {
       console.log(e)
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
@@ -39,7 +41,8 @@ export class TagsService {
 
   async deleteTag (uuid: string ) {
     try {
-      return await this.tagsRepository.delete(uuid);
+      await this.tagsRepository.delete(uuid);
+      return uuid;
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }

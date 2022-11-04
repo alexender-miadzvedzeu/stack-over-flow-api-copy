@@ -25,9 +25,9 @@ export class AnswersService {
       answer.author = user;
       answer.description = answerDto.description;
       answer.question = questionToUpdate;
-      const answerEntity = await this.dataSource.manager.save(answer);
+      const { uuid } = await this.dataSource.manager.save(answer);
       await queryRunner.commitTransaction();
-      return answerEntity;
+      return uuid;
     } catch (e) {
       await queryRunner.rollbackTransaction()
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
