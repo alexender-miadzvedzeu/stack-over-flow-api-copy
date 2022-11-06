@@ -1,15 +1,15 @@
 import { Body, Controller, Delete, Get, HttpStatus, Post, Put, Query, UseGuards } from "@nestjs/common";
-import { AnswersService } from "./answers.service";
-import { AnswerDto } from "./dto/answer.dto";
+import { AnswersService } from "@Answers/answers.service";
+import { AnswerDto } from "@Answers/dto/answer.dto";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { UsersEntity } from "../users/users.entity";
-import { User } from "../auth/user.decorator";
-import { Roles } from "../auth/roles-auth.decorator";
-import { RolesAuthGuard } from "../auth/roles-auth.guard";
-import { AnswersEntity } from "./answers.entity";
-import { UpdateAnswerDto } from "./dto/update-answer.dto";
-import { RepositoryDecorator } from "../auth/repository.decorator";
-import { IsAuthorAuthGuard } from "../auth/isAuthor-auth.guard";
+import { UsersEntity } from "@Users/users.entity";
+import { User } from "@Auth/user.decorator";
+import { Roles } from "@Auth/roles-auth.decorator";
+import { RolesAuthGuard } from "@Auth/roles-auth.guard";
+import { AnswersEntity } from "@Answers/answers.entity";
+import { UpdateAnswerDto } from "@Answers/dto/update-answer.dto";
+import { RepositoryDecorator } from "@Auth/repository.decorator";
+import { IsAuthorAuthGuard } from "@Auth/isAuthor-auth.guard";
 
 @ApiTags("Answers")
 @Controller("/api/answers")

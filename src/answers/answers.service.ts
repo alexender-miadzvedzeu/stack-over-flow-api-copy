@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { AnswerDto } from "./dto/answer.dto";
+import { AnswerDto } from "@Answers/dto/answer.dto";
 import { InjectRepository } from "@nestjs/typeorm";
-import { AnswersEntity } from "./answers.entity";
+import { AnswersEntity } from "@Answers/answers.entity";
 import { DataSource, Repository } from "typeorm";
 import { UsersEntity } from "@Users/users.entity";
 import { QuestionsEntity } from "@Questions/questions.entity";
