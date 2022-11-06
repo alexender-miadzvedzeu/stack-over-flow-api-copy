@@ -19,7 +19,6 @@ export class QuestionsService {
 
   async getAllQuestions (tags?: string) {
     const tagsArray = tags?.split(",")?.map(tag => ({ uuid: tag.trim() })).filter(({uuid}) => !!uuid);
-    console.log(tagsArray)
     try {
       return this.questionsRepository.find({
         select: {
