@@ -1,11 +1,10 @@
 import { Body, Controller, Delete, Post, Headers, UseGuards } from "@nestjs/common";
-import { AuthService } from "./auth.service";
+import { AuthService } from "@Auth/auth.service";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { AuthDto } from "./dto/auth.dto";
-import { AuthResponseDto } from "./dto/auth-response.dto";
-import { AuthLogOutDto } from "./dto/auth-log-out.dto";
-import { Roles } from "./roles-auth.decorator";
-import { RolesAuthGuard } from "./roles-auth.guard";
+import { AuthDto } from "@Auth/dto/auth.dto";
+import { AuthResponseDto } from "@Auth/dto/auth-response.dto";
+import { Roles } from "@Auth/roles-auth.decorator";
+import { RolesAuthGuard } from "@Auth/roles-auth.guard";
 
 @ApiTags("Auth")
 @Controller("/api/auth")

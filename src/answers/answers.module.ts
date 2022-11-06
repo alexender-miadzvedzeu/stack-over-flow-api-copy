@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
-import { AnswersController } from "./answers.controller";
-import { AnswersService } from "./answers.service";
-import { QuestionsModule } from "../questions/questions.module";
+import { AnswersController } from "@Answers/answers.controller";
+import { AnswersService } from "@Answers/answers.service";
+import { QuestionsModule } from "@Questions/questions.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { AnswersEntity } from "./answers.entity";
-import { AuthModule } from "../auth/auth.module";
+import { AnswersEntity } from "@Answers/answers.entity";
+import { AuthModule } from "@Auth/auth.module";
 
 @Module({
   imports: [TypeOrmModule.forFeature([AnswersEntity]), QuestionsModule, AuthModule],

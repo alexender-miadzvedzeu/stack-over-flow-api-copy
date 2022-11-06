@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany } from "typeorm";
-import { BaseEntity } from "../base-entity";
+import { BaseEntity } from "@/base-entity";
 import { ApiProperty } from "@nestjs/swagger";
-import { UsersEntity } from "../users/users.entity";
+import { UsersEntity } from "@Users/users.entity";
 
 @Entity("role")
 export class RoleEntity extends BaseEntity {

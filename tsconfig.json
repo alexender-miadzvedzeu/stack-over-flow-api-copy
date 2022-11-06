@@ -16,6 +16,15 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@/*": ["src/*"],
+      "@Auth/*": ["src/auth/*"],
+      "@Answers/*": ["src/answers/*"],
+      "@Questions/*": ["src/questions/*"],
+      "@Role/*": ["src/role/*"],
+      "@Tags/*": ["src/tags/*"],
+      "@Users/*": ["src/users/*"]
+    }
   }
 }

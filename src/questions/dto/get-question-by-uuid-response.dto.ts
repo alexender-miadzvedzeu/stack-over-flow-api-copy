@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { AnswersEntity } from "../../answers/answers.entity";
+import { AnswersEntity } from "@Answers/answers.entity";
 
 export class GetQuestionByUuidResponseDto {
   @ApiProperty({title: "uuid", description: "Question uuid", required: true})

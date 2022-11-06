@@ -2,8 +2,8 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { Observable } from "rxjs";
 import { JwtService } from "@nestjs/jwt";
 import { Reflector } from "@nestjs/core";
-import { ROLES_KEY } from "./roles-auth.decorator";
-import { AuthService } from "./auth.service";
+import { ROLES_KEY } from "@Auth/roles-auth.decorator";
+import { AuthService } from "@Auth/auth.service";
 
 
 @Injectable()

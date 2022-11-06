@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne } from "typeorm";
-import { BaseEntity } from "../base-entity";
+import { BaseEntity } from "@/base-entity";
 import { ApiProperty } from "@nestjs/swagger";
-import { UsersEntity } from "../users/users.entity";
+import { UsersEntity } from "@Users/users.entity";
 
 @Entity("tags")
 export class TagsEntity extends BaseEntity {

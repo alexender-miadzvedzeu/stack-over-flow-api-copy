@@ -3,9 +3,9 @@ import { AnswerDto } from "./dto/answer.dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AnswersEntity } from "./answers.entity";
 import { DataSource, Repository } from "typeorm";
-import { UsersEntity } from "../users/users.entity";
-import { QuestionsEntity } from "../questions/questions.entity";
-import { UpdateAnswerDto } from "./dto/update-answer.dto";
+import { UsersEntity } from "@Users/users.entity";
+import { QuestionsEntity } from "@Questions/questions.entity";
+import { UpdateAnswerDto } from "@Answers/dto/update-answer.dto";
 
 @Injectable()
 export class AnswersService {

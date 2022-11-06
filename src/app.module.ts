@@ -1,19 +1,19 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { UsersModule } from "./users/users.module";
+import { UsersModule } from "@Users/users.module";
 import { DataSource } from "typeorm";
-import { RoleModule } from "./role/role.module";
-import { RoleEntity } from "./role/role.entity";
-import { AuthModule } from "./auth/auth.module";
-import { UsersEntity } from "./users/users.entity";
-import { QuestionsModule } from "./questions/questions.module";
-import { QuestionsEntity } from "./questions/questions.entity";
-import { TagsModule } from "./tags/tags.module";
-import { TagsEntity } from "./tags/tags.entity";
-import { AnswersModule } from "./answers/answers.module";
-import { AnswersEntity } from "./answers/answers.entity";
-import { SessionsEntity } from "./auth/auth.entity";
+import { RoleModule } from "@Role/role.module";
+import { RoleEntity } from "@Role/role.entity";
+import { AuthModule } from "@Auth/auth.module";
+import { UsersEntity } from "@Users/users.entity";
+import { QuestionsModule } from "@Questions/questions.module";
+import { QuestionsEntity } from "@Questions/questions.entity";
+import { TagsModule } from "@Tags/tags.module";
+import { TagsEntity } from "@Tags/tags.entity";
+import { AnswersModule } from "@Answers/answers.module";
+import { AnswersEntity } from "@Answers/answers.entity";
+import { SessionsEntity } from "@Auth/auth.entity";
 
 @Module({
   imports: [

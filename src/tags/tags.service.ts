@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { TagsEntity } from "./tags.entity";
-import { TagDto } from "./dto/tag.dto";
-import { UpdateTagDto } from "./dto/update-tag.dto";
+import { TagsEntity } from "@Tags/tags.entity";
+import { TagDto } from "@Tags/dto/tag.dto";
+import { UpdateTagDto } from "@Tags/dto/update-tag.dto";
 
 @Injectable()
 export class TagsService {

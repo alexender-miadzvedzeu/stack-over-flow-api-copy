@@ -1,8 +1,8 @@
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany } from "typeorm";
-import { BaseEntity } from "../base-entity";
-import { UsersEntity } from "../users/users.entity";
-import { AnswersEntity } from "../answers/answers.entity";
-import { TagsEntity } from "../tags/tags.entity";
+import { BaseEntity } from "@/base-entity";
+import { UsersEntity } from "@Users/users.entity";
+import { AnswersEntity } from "@Answers/answers.entity";
+import { TagsEntity } from "@Tags/tags.entity";
 
 @Entity("questions")
 export class QuestionsEntity extends BaseEntity {

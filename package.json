@@ -30,6 +30,7 @@
     "@nestjs/typeorm": "^9.0.1",
     "bcrypt": "^5.1.0",
     "cross-env": "^7.0.3",
+    "module-alias": "^2.2.2",
     "mysql2": "^2.3.3",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
@@ -78,5 +79,14 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/../src/$1",
+    "^@Auth/(.*)$": "<rootDir>/../src/auth/$1",
+    "^@Answers/(.*)$": "<rootDir>/../src/answers/$1",
+    "^@Questions/(.*)$": "<rootDir>/../src/questions/$1",
+    "^@Role/(.*)$": "<rootDir>/../src/role/$1",
+    "^@Tags/(.*)$": "<rootDir>/../src/tags/$1",
+    "^@Users/(.*)$": "<rootDir>/../src/users/$1"
   }
 }

@@ -1,12 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DataSource, Repository } from "typeorm";
-import { QuestionsEntity } from "./questions.entity";
-import { UpdateQuestionDto } from "./dto/update-question.dto";
-import { UsersEntity } from "../users/users.entity";
-import { QuestionDto } from "./dto/question.dto";
-import { UpdateQuestionTagsDto } from "./dto/update-question-tags.dto";
-import { TagsService } from "../tags/tags.service";
+import { QuestionsEntity } from "@Questions/questions.entity";
+import { UpdateQuestionDto } from "@Questions/dto/update-question.dto";
+import { UsersEntity } from "@Users/users.entity";
+import { QuestionDto } from "@Questions/dto/question.dto";
+import { UpdateQuestionTagsDto } from "@Questions/dto/update-question-tags.dto";
+import { TagsService } from "@Tags/tags.service";
 
 @Injectable()
 export class QuestionsService {

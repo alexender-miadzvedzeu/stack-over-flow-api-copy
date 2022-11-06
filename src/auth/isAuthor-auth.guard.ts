@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { Observable } from "rxjs";
 import { Reflector } from "@nestjs/core";
 import { DataSource } from "typeorm";
-import { REPOSITORY_KEY } from "./repository.decorator";
+import { REPOSITORY_KEY } from "@Auth/repository.decorator";
 import { EntityTarget } from "typeorm/common/EntityTarget";
 
 @Injectable()

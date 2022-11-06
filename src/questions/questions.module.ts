@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
-import { QuestionsController } from "./questions.controller";
-import { QuestionsService } from "./questions.service";
+import { QuestionsController } from "@Questions/questions.controller";
+import { QuestionsService } from "@Questions/questions.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { QuestionsEntity } from "./questions.entity";
-import { AuthModule } from "../auth/auth.module";
-import { TagsModule } from "../tags/tags.module";
+import { QuestionsEntity } from "@Questions/questions.entity";
+import { AuthModule } from "@Auth/auth.module";
+import { TagsModule } from "@Tags/tags.module";
 
 @Module({
   imports: [TypeOrmModule.forFeature([QuestionsEntity]), AuthModule, TagsModule],

@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { BaseEntity } from "../../base-entity";
+import { BaseEntity } from "@/base-entity";
 
 export class UserDto extends BaseEntity {
   @ApiProperty({ example: "test@test.com", description: "User email" })

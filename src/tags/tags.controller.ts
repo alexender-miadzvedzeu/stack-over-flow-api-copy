@@ -1,11 +1,11 @@
 import { Body, Controller, Delete, Get, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { ApiHeader, ApiOperation, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { TagsService } from "./tags.service";
-import { TagsEntity } from "./tags.entity";
-import { TagDto } from "./dto/tag.dto";
-import { UpdateTagDto } from "./dto/update-tag.dto";
-import { Roles } from "../auth/roles-auth.decorator";
-import { RolesAuthGuard } from "../auth/roles-auth.guard";
+import { TagsService } from "@Tags/tags.service";
+import { TagsEntity } from "@Tags/tags.entity";
+import { TagDto } from "@Tags/dto/tag.dto";
+import { UpdateTagDto } from "@Tags/dto/update-tag.dto";
+import { Roles } from "@Auth/roles-auth.decorator";
+import { RolesAuthGuard } from "@Auth/roles-auth.guard";
 
 @ApiTags("Tags")
 @ApiHeader({
