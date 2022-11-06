@@ -27,8 +27,8 @@ export class QuestionsController {
   @ApiOperation({ summary: "Get all questions" })
   @ApiResponse({ status: HttpStatus.OK, type: [GetAllQuestionsResponseDto]})
   @Get()
-  getAllQuestions() {
-    return this.questionsService.getAllQuestions()
+  getAllQuestions(@Query("tags") tags: string) {
+    return this.questionsService.getAllQuestions(tags)
   }
 
   @ApiOperation({ summary: "Get question by uuid" })
