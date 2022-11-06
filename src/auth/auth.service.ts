@@ -92,8 +92,9 @@ export class AuthService {
     }
   }
 
-  async logOut (token: string) {
+  async logOut (payload: string) {
     try {
+      const token = payload.split(" ")[1];
       const session = await this.sessionRepository.findOneBy({ token });
       return await this.sessionRepository.remove(session);
     } catch (e) {
