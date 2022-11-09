@@ -24,9 +24,9 @@ import { SessionsEntity } from "@Auth/auth.entity";
         type: "postgres",
         port: configModule.get("POSTGRES_PORT"),
         host: configModule.get("POSTGRES_HOST"),
-        username: configModule.get("POSTGRES_USER_NAME"),
+        username: configModule.get("POSTGRES_USER"),
         password: configModule.get("POSTGRES_PASSWORD"),
-        database: configModule.get("POSTGRES_NAME"),
+        database: configModule.get("POSTGRES_DB"),
         synchronize: process.env.NODE_ENV !== "production",
         entities: [
           UsersEntity,
@@ -38,7 +38,10 @@ import { SessionsEntity } from "@Auth/auth.entity";
         ],
       }),
     }),
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: `.env.${process.env.NODE_ENV}` }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: `.env.${process.env.NODE_ENV}`,
+    }),
     UsersModule,
     RoleModule,
     AuthModule,
