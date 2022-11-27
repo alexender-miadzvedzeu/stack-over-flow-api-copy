@@ -19,5 +19,6 @@ async function bootstrap() {
   await app.listen(PORT || 3000, () =>
     console.log(`Server started on PORT: ${PORT}`),
   );
+  console.log(process.env.POSTGRES_HOST)
 }
 bootstrap();

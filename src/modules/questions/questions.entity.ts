@@ -1,7 +1,14 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+} from "typeorm";
 import { BaseEntity } from "@/base-entity";
 import { UsersEntity } from "@Users/users.entity";
-import { AnswersEntity } from "@Answers/answers.entity";
+import { AnswersEntity } from "@/modules/answers/answers.entity";
 import { TagsEntity } from "@Tags/tags.entity";
 
 @Entity("questions")
@@ -12,11 +19,11 @@ export class QuestionsEntity extends BaseEntity {
   rating: number;
   @Column({ nullable: false, type: "varchar" })
   description: string;
-  @ManyToOne(() => UsersEntity, user => user.uuid, { onDelete: "CASCADE" } )
-  author: UsersEntity
-  @OneToMany(() => AnswersEntity, answer => answer.question)
-  answers: AnswersEntity[]
+  @ManyToOne(() => UsersEntity, (user) => user.uuid, { onDelete: "CASCADE" })
+  author: UsersEntity;
+  @OneToMany(() => AnswersEntity, (answer) => answer.question)
+  answers: AnswersEntity[];
   @ManyToMany(() => TagsEntity)
   @JoinTable()
-  tags: TagsEntity[]
+  tags: TagsEntity[];
 }

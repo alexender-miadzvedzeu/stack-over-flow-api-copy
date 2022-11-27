@@ -58,6 +58,10 @@ The API should have the following endpoints:
 7. Unit tests (Mocha.js)
 8. Running NodeJS process continuously (pm2 or others)
 
+
+# DROP ALL TABLES
+yarn typeorm query "DROP SCHEMA public CASCADE; CREATE SCHEMA public; GRANT USAGE ON SCHEMA public to PUBLIC; GRANT CREATE ON SCHEMA public to PUBLIC; COMMENT ON SCHEMA public IS 'standard public schema';"
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>

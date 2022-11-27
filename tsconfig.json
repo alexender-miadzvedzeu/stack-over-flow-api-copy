@@ -19,12 +19,12 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@/*": ["src/*"],
-      "@Auth/*": ["src/auth/*"],
-      "@Answers/*": ["src/answers/*"],
-      "@Questions/*": ["src/questions/*"],
-      "@Role/*": ["src/role/*"],
-      "@Tags/*": ["src/tags/*"],
-      "@Users/*": ["src/users/*"]
+      "@Auth/*": ["src/modules/auth/*"],
+      "@Answers/*": ["src/modules/answers/*"],
+      "@Questions/*": ["src/modules/questions/*"],
+      "@Role/*": ["src/modules/role/*"],
+      "@Tags/*": ["src/modules/tags/*"],
+      "@Users/*": ["src/modules/users/*"]
     }
   }
 }
