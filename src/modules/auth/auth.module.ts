@@ -12,9 +12,6 @@ import { SessionsEntity } from "./auth.entity";
     TypeOrmModule.forFeature([SessionsEntity]),
     JwtModule.register({
       secret: process.env.SECRET_KEY || "secret",
-      signOptions: {
-        expiresIn: "24h"
-      }
     })
   ],
   providers: [AuthService],

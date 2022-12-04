@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class Root1669571051550 implements MigrationInterface {
-    name = "Root1669571051550"
+export class Root1670174356389 implements MigrationInterface {
+    name = "Root1670174356389"
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "role" ("uuid" uuid NOT NULL DEFAULT uuid_generate_v4(), "createdAt" TIMESTAMP DEFAULT now(), "updatedAt" TIMESTAMP DEFAULT now(), "value" character varying NOT NULL, "description" character varying NOT NULL, CONSTRAINT "UQ_98082dbb08817c9801e32dd0155" UNIQUE ("value"), CONSTRAINT "PK_16fc336b9576146aa1f03fdc7c5" PRIMARY KEY ("uuid"))`);
-        await queryRunner.query(`CREATE TABLE "sessions" ("uuid" uuid NOT NULL DEFAULT uuid_generate_v4(), "createdAt" TIMESTAMP DEFAULT now(), "updatedAt" TIMESTAMP DEFAULT now(), "token" character varying NOT NULL, "userUuid" uuid, CONSTRAINT "UQ_e9f62f5dcb8a54b84234c9e7a06" UNIQUE ("token"), CONSTRAINT "PK_faf29798ea59ac7f07b1be6f79b" PRIMARY KEY ("uuid"))`);
+        await queryRunner.query(`CREATE TABLE "sessions" ("uuid" uuid NOT NULL DEFAULT uuid_generate_v4(), "createdAt" TIMESTAMP DEFAULT now(), "updatedAt" TIMESTAMP DEFAULT now(), "userUuid" uuid, CONSTRAINT "PK_faf29798ea59ac7f07b1be6f79b" PRIMARY KEY ("uuid"))`);
         await queryRunner.query(`CREATE TABLE "users" ("uuid" uuid NOT NULL DEFAULT uuid_generate_v4(), "createdAt" TIMESTAMP DEFAULT now(), "updatedAt" TIMESTAMP DEFAULT now(), "email" character varying NOT NULL, "password" character varying NOT NULL, "roleUuid" uuid, CONSTRAINT "UQ_97672ac88f789774dd47f7c8be3" UNIQUE ("email"), CONSTRAINT "PK_951b8f1dfc94ac1d0301a14b7e1" PRIMARY KEY ("uuid"))`);
         await queryRunner.query(`CREATE TABLE "tags" ("uuid" uuid NOT NULL DEFAULT uuid_generate_v4(), "createdAt" TIMESTAMP DEFAULT now(), "updatedAt" TIMESTAMP DEFAULT now(), "tag" character varying NOT NULL, "authorUuid" uuid, CONSTRAINT "UQ_db66121dc39534bfc85341711d1" UNIQUE ("tag"), CONSTRAINT "PK_46eb0c89341869ba6c882edab36" PRIMARY KEY ("uuid"))`);
         await queryRunner.query(`CREATE TABLE "questions" ("uuid" uuid NOT NULL DEFAULT uuid_generate_v4(), "createdAt" TIMESTAMP DEFAULT now(), "updatedAt" TIMESTAMP DEFAULT now(), "title" character varying NOT NULL, "rating" integer NOT NULL DEFAULT '0', "description" character varying NOT NULL, "authorUuid" uuid, CONSTRAINT "PK_64caa00822d29e30eba1f273db5" PRIMARY KEY ("uuid"))`);

@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { Observable } from "rxjs";
 import { JwtService } from "@nestjs/jwt";
 import { Reflector } from "@nestjs/core";
-import { ROLES_KEY } from "@Auth/roles-auth.decorator";
+import { ROLES_KEY } from "@Auth/decorators/roles-auth.decorator";
 import { AuthService } from "@Auth/auth.service";
 
 
@@ -24,20 +24,22 @@ export class RolesAuthGuard implements CanActivate {
       const authorisationHeader = request.headers.authorization;
       const tokenType = authorisationHeader?.split(" ")[0];
       const token = authorisationHeader?.split(" ")[1];
+  
       if (tokenType !== "Bearer" || !token) {
-        throw new UnauthorizedException({ message: "Authentication failed" })
+        throw new UnauthorizedException()
       }
-      return this.authService.checkSession(token)
-        .then(session => {
-          if (session) {
-            const user = this.jwtService.verify(token);
-            request.user = user;
-            return requaredRoles.some(role => role === user.role.value);
-          }
-          throw new UnauthorizedException({ message: "Authentication failed" })
-        })
+
+      const user = this.jwtService.verify(token);
+      return this.authService.checkSession(user.session)
+      .then(session => {
+        if (session) {
+          request.user = user;
+          return requaredRoles.some(role => role === user.role.value);
+        }
+        throw new UnauthorizedException()
+      })
     } catch (e) {
-      throw new UnauthorizedException({ message: "Authentication failed" })
+      throw new UnauthorizedException()
     }
   }
 }

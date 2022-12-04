@@ -13,13 +13,13 @@ import { AnswersService } from "@/modules/answers/answers.service";
 import { AnswerDto } from "@/modules/answers/dto/answer.dto";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { UsersEntity } from "@Users/users.entity";
-import { User } from "@Auth/user.decorator";
-import { Roles } from "@Auth/roles-auth.decorator";
-import { RolesAuthGuard } from "@Auth/roles-auth.guard";
+import { User } from "@Auth/decorators/user.decorator";
+import { Roles } from "@Auth/decorators/roles-auth.decorator";
+import { RolesAuthGuard } from "@Auth/guards/roles-auth.guard";
 import { AnswersEntity } from "@/modules/answers/answers.entity";
 import { UpdateAnswerDto } from "@/modules/answers/dto/update-answer.dto";
-import { RepositoryDecorator } from "@Auth/repository.decorator";
-import { IsAuthorAuthGuard } from "@Auth/isAuthor-auth.guard";
+import { RepositoryDecorator } from "@/modules/auth/decorators/repository.decorator";
+import { IsAuthorAuthGuard } from "@/modules/auth/guards/isAuthor-auth.guard";
 
 @ApiTags("Answers")
 @Controller("/api/answers")

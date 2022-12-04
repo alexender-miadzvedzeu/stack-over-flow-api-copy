@@ -34,7 +34,6 @@ export class TagsService {
       await this.tagsRepository.update(tagDto.uuid, { tag: tagDto.tag });
       return tagDto.uuid;
     } catch (e) {
-      console.log(e)
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
   }

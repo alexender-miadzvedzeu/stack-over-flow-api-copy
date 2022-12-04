@@ -4,8 +4,8 @@ import { TagsService } from "@Tags/tags.service";
 import { TagsEntity } from "@Tags/tags.entity";
 import { TagDto } from "@Tags/dto/tag.dto";
 import { UpdateTagDto } from "@Tags/dto/update-tag.dto";
-import { Roles } from "@Auth/roles-auth.decorator";
-import { RolesAuthGuard } from "@Auth/roles-auth.guard";
+import { Roles } from "@Auth/decorators/roles-auth.decorator";
+import { RolesAuthGuard } from "@Auth/guards/roles-auth.guard";
 
 @ApiTags("Tags")
 @ApiHeader({

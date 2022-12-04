@@ -80,7 +80,6 @@ export class UsersService {
       if (!user) throw new HttpException("User not found", HttpStatus.BAD_REQUEST)
       return await this.userRepository.remove(user)
     } catch (e) {
-      console.log(JSON.stringify(e))
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
   }

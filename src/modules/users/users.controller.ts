@@ -2,8 +2,8 @@ import { Controller, Delete, Get, Query, UseGuards } from "@nestjs/common";
 import { UsersService } from "@Users/users.service";
 import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { UsersEntity } from "@Users/users.entity";
-import { Roles } from "@Auth/roles-auth.decorator";
-import { RolesAuthGuard } from "@Auth/roles-auth.guard";
+import { Roles } from "@Auth/decorators/roles-auth.decorator";
+import { RolesAuthGuard } from "@Auth/guards/roles-auth.guard";
 
 @ApiTags("Users")
 @Controller("/api/users")

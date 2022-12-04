@@ -29,16 +29,6 @@ services:
     volumes:
       - pgdata:/Postgres/var-15
     restart: always
-  migration:
-    build: 
-      context: .
-    command: [
-      'npm',
-      'run',
-      'typeorm',
-      '--', 
-      'migration:run'
-    ]
 
 volumes:
   pgdata:

@@ -9,4 +9,6 @@ export class GenerateUserTokenDtoDto extends BaseEntity {
   readonly password: string;
   @ApiProperty({ example: "admin", description: "User role", required: false })
   readonly role?: RoleEntity;
+  @ApiProperty({ description: "Session uuid" })
+  readonly sessionUuid: string;
 }
