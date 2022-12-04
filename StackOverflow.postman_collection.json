@@ -1,0 +1,650 @@
+{
+	"info": {
+		"_postman_id": "8342dd45-c9e2-408a-8c17-0429e9f0b24b",
+		"name": "StackOverflow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign-in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/sign-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@gmail.com\",\n    \"password\": \"user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/sign-up",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log-out",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/log-out",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"log-out"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh-tokens",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/refresh-tokens",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh-tokens"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get all users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/users?uuid=8e60f7e7-b134-4b58-bf60-358385e684c6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "8e60f7e7-b134-4b58-bf60-358385e684c6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Post question",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"User question_1\",\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/questions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all questions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"questionUuid\": \"70c949a3-723e-4625-bdaa-0b35d80a2b4q\",\n    \"description\": \"1qasdasdaddadadadadadaw\",\n    \"rating\": \"decr\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/questions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"questions"
+							],
+							"query": [
+								{
+									"key": "tags",
+									"value": "14ae018c-19eb-465a-8171-5f6696f69f61,",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update question",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"ec8cae58-2715-4c61-a195-af7eb74d9d21\",\n    \"title\": \"User question 1\",\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n    \"rating\": \"inc\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/questions/de4b6d2c-844d-4ed1-91d6-3790104c35ac",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"questions",
+								"de4b6d2c-844d-4ed1-91d6-3790104c35ac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete question",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6IjZhZjYwNjU0LWMzZTYtNDI2ZC04Yjc0LWEzNDc0NDdkOWJjYSIsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IlByb3ZpZGVzIHRvIHVwZGF0ZSBhbmQgZGVsZXRlIGFueSBxdWVzdGlvbnMgYW5kIHRhZ3MifSwidXVpZCI6IjEyZjFkOTgxLTU2MTUtNDA0OC05YmYyLTI3OTMwYzIxMmM5MSIsImlhdCI6MTY2NzU3NDIwOSwiZXhwIjoxNjY3NjYwNjA5fQ.GJdacO1DOzjZ_5RTqGFAYFmGmj_TnwPYRrdo90CMK2s",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/questions?uuid=ec8cae58-2715-4c61-a195-af7eb74d9d21",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"questions"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "ec8cae58-2715-4c61-a195-af7eb74d9d21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get question by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6ImJhNzM1NWVlLWVmZTEtNGFlMC1iMjJiLTk2YmFhYTFjMDg1ZSIsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6NTE6MDkuODY5WiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjdUMTI6MjA6MzIuNjMyWiIsInZhbHVlIjoidXNlciIsImRlc2NyaXB0aW9uIjoiUHJvdmlkZXMgdG8gY2hhbmdlIG9ubHkgdGhlaXIgb3duIHBvc3RzIn0sInV1aWQiOiI0ZmE3MjgzNi1hNWQyLTQ3ZmQtYTFiMi03NDkzMmQxYjJkZTgiLCJpYXQiOjE2Njc0NjM5MDEsImV4cCI6MTY2NzU1MDMwMX0.H7OZ3INbDX2ybQo8B3r3sAxxfhQ_RcvOM9RuOmrvZ1Y",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/questions/8a8c1838-1202-4aff-b089-f2515b89396e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"questions",
+								"8a8c1838-1202-4aff-b089-f2515b89396e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Manage questions tags",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6IjZhZjYwNjU0LWMzZTYtNDI2ZC04Yjc0LWEzNDc0NDdkOWJjYSIsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IlByb3ZpZGVzIHRvIHVwZGF0ZSBhbmQgZGVsZXRlIGFueSBxdWVzdGlvbnMgYW5kIHRhZ3MifSwidXVpZCI6IjEyZjFkOTgxLTU2MTUtNDA0OC05YmYyLTI3OTMwYzIxMmM5MSIsImlhdCI6MTY2Nzc0MDA1MSwiZXhwIjoxNjY3ODI2NDUxfQ.57Rbs66T3I9hi_dp_IKRtRmMhP90ZSXP6mQ8ZNSAclo",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"a9326bab-a50c-44f1-8b5e-34d88bbd0b9d\",\n    \"tagsUuids\": [\n        \"8452995e-e628-40de-a150-ab9936d5c879\",\n        \"14ae018c-19eb-465a-8171-5f6696f69f61\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/questions/tags",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"questions",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Answers",
+			"item": [
+				{
+					"name": "Post answer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicm9sZSI6eyJ1dWlkIjoiYmE3MzU1ZWUtZWZlMS00YWUwLWIyMmItOTZiYWFhMWMwODVlIiwiY3JlYXRlZEF0IjoiMjAyMi0xMC0yN1QxMDo1MTowOS44NjlaIiwidXBkYXRlZEF0IjoiMjAyMi0xMC0yN1QxMjoyMDozMi42MzJaIiwidmFsdWUiOiJ1c2VyIiwiZGVzY3JpcHRpb24iOiJQcm92aWRlcyB0byBjaGFuZ2Ugb25seSB0aGVpciBvd24gcG9zdHMifSwidXVpZCI6ImVjNTdiZGVhLTc2MDItNGQ3My1hNzU2LWQ1N2IxNDk5ODhiZSIsImlhdCI6MTY2NzczOTkzNiwiZXhwIjoxNjY3ODI2MzM2fQ.lb9tlOMKHW3Qii_JEMiLWH4FZIYdkWjDeaJIlIZlkbQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"questionUuid\": \"8a8c1838-1202-4aff-b089-f2515b89396e\",\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/answers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"answers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get answers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicm9sZSI6eyJ1dWlkIjoiYmE3MzU1ZWUtZWZlMS00YWUwLWIyMmItOTZiYWFhMWMwODVlIiwiY3JlYXRlZEF0IjoiMjAyMi0xMC0yN1QxMDo1MTowOS44NjlaIiwidXBkYXRlZEF0IjoiMjAyMi0xMC0yN1QxMjoyMDozMi42MzJaIiwidmFsdWUiOiJ1c2VyIiwiZGVzY3JpcHRpb24iOiJQcm92aWRlcyB0byBjaGFuZ2Ugb25seSB0aGVpciBvd24gcG9zdHMifSwidXVpZCI6IjQ4YTZiMjYyLWIyNDItNGNiNC1hYTk3LTE0NTUyYzVlNWI5ZCIsImlhdCI6MTY2NzMxMDQ1MCwiZXhwIjoxNjY3Mzk2ODUwfQ.36yh6kzcuGNnJE2i9HQTsiUAzo8HnivUfTzXEmYszQo",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/answers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"answers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete answer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6IjZhZjYwNjU0LWMzZTYtNDI2ZC04Yjc0LWEzNDc0NDdkOWJjYSIsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IlByb3ZpZGVzIHRvIHVwZGF0ZSBhbmQgZGVsZXRlIGFueSBxdWVzdGlvbnMgYW5kIHRhZ3MifSwidXVpZCI6IjEyZjFkOTgxLTU2MTUtNDA0OC05YmYyLTI3OTMwYzIxMmM5MSIsImlhdCI6MTY2NzU2OTI1MSwiZXhwIjoxNjY3NjU1NjUxfQ.UUK58Z2P25G54ZueBFbFaHLyr5xc2oBlz7viWoNHWhg",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/answers?uuid=87151564-67f5-45be-8ca8-16344abf277e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"answers"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "87151564-67f5-45be-8ca8-16344abf277e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update answer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6IjZhZjYwNjU0LWMzZTYtNDI2ZC04Yjc0LWEzNDc0NDdkOWJjYSIsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IlByb3ZpZGVzIHRvIHVwZGF0ZSBhbmQgZGVsZXRlIGFueSBxdWVzdGlvbnMgYW5kIHRhZ3MifSwidXVpZCI6IjEyZjFkOTgxLTU2MTUtNDA0OC05YmYyLTI3OTMwYzIxMmM5MSIsImlhdCI6MTY2NzU2NjQzMiwiZXhwIjoxNjY3NjUyODMyfQ.Fhg_zsWfKiQtdQQd1d3NLqn-1GYOd4o0mmIeLhViJOI",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"d25cb96b-e9a4-4a32-a8d4-2613655fd153\",\n    \"description\": \"asdasdsdadwdwdw\",\n    \"rating\": \"decr\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/answers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"answers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Get all tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6IjZhZjYwNjU0LWMzZTYtNDI2ZC04Yjc0LWEzNDc0NDdkOWJjYSIsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IlByb3ZpZGVzIHRvIHVwZGF0ZSBhbmQgZGVsZXRlIGFueSBxdWVzdGlvbnMgYW5kIHRhZ3MifSwidXVpZCI6IjEyZjFkOTgxLTU2MTUtNDA0OC05YmYyLTI3OTMwYzIxMmM5MSIsImlhdCI6MTY2Nzc0MDA1MSwiZXhwIjoxNjY3ODI2NDUxfQ.57Rbs66T3I9hi_dp_IKRtRmMhP90ZSXP6mQ8ZNSAclo",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/tags",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete tag",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6IjZhZjYwNjU0LWMzZTYtNDI2ZC04Yjc0LWEzNDc0NDdkOWJjYSIsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IlByb3ZpZGVzIHRvIHVwZGF0ZSBhbmQgZGVsZXRlIGFueSBxdWVzdGlvbnMgYW5kIHRhZ3MifSwidXVpZCI6IjEyZjFkOTgxLTU2MTUtNDA0OC05YmYyLTI3OTMwYzIxMmM5MSIsImlhdCI6MTY2NzU2OTI1MSwiZXhwIjoxNjY3NjU1NjUxfQ.UUK58Z2P25G54ZueBFbFaHLyr5xc2oBlz7viWoNHWhg",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/tags?uuid=8452995e-e628-40de-a150-ab9936d5c879",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "8452995e-e628-40de-a150-ab9936d5c879"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post tag",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6IjZhZjYwNjU0LWMzZTYtNDI2ZC04Yjc0LWEzNDc0NDdkOWJjYSIsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IlByb3ZpZGVzIHRvIHVwZGF0ZSBhbmQgZGVsZXRlIGFueSBxdWVzdGlvbnMgYW5kIHRhZ3MifSwidXVpZCI6IjEyZjFkOTgxLTU2MTUtNDA0OC05YmYyLTI3OTMwYzIxMmM5MSIsImlhdCI6MTY2NzU2OTI1MSwiZXhwIjoxNjY3NjU1NjUxfQ.UUK58Z2P25G54ZueBFbFaHLyr5xc2oBlz7viWoNHWhg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tag\": \"Tag_811\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tags?uuid=1bc6d2f2-10ab-4fac-9517-6e4f53798a64",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "1bc6d2f2-10ab-4fac-9517-6e4f53798a64"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update tag",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6IjZhZjYwNjU0LWMzZTYtNDI2ZC04Yjc0LWEzNDc0NDdkOWJjYSIsImNyZWF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInVwZGF0ZWRBdCI6IjIwMjItMTAtMjdUMTA6MzI6MjguMjUwWiIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6IlByb3ZpZGVzIHRvIHVwZGF0ZSBhbmQgZGVsZXRlIGFueSBxdWVzdGlvbnMgYW5kIHRhZ3MifSwidXVpZCI6IjEyZjFkOTgxLTU2MTUtNDA0OC05YmYyLTI3OTMwYzIxMmM5MSIsImlhdCI6MTY2NzU2OTI1MSwiZXhwIjoxNjY3NjU1NjUxfQ.UUK58Z2P25G54ZueBFbFaHLyr5xc2oBlz7viWoNHWhg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"dfdd05de-8c15-4523-a475-76e2bc0fae49\",\n    \"tag\": \"Tag_3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tags?uuid=1bc6d2f2-10ab-4fac-9517-6e4f53798a64",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "1bc6d2f2-10ab-4fac-9517-6e4f53798a64"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
