@@ -1,4 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
+import { RoleEntity } from "@/modules/role/role.entity";
+import { UsersEntity } from "@/modules/users/users.entity";
 
 export class Root1670174356389 implements MigrationInterface {
     name = "Root1670174356389"
@@ -21,6 +23,19 @@ export class Root1670174356389 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE "answers" ADD CONSTRAINT "FK_311d041874939847daf3b1dc346" FOREIGN KEY ("questionUuid") REFERENCES "questions"("uuid") ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE "questions_tags_tags" ADD CONSTRAINT "FK_3c0202180b3c62891e3465bd292" FOREIGN KEY ("questionsUuid") REFERENCES "questions"("uuid") ON DELETE CASCADE ON UPDATE CASCADE`);
         await queryRunner.query(`ALTER TABLE "questions_tags_tags" ADD CONSTRAINT "FK_a15bd31d0b7e0e37a27f06b7923" FOREIGN KEY ("tagsUuid") REFERENCES "tags"("uuid") ON DELETE CASCADE ON UPDATE CASCADE`);
+        const role = await queryRunner.manager.save(
+          queryRunner.manager.create<RoleEntity>(RoleEntity, {
+            value: "admin",
+            description: "Can manage all data"
+          }),
+        );
+        await queryRunner.manager.save(
+          queryRunner.manager.create<UsersEntity>(UsersEntity, {
+            role,
+            email: "admin@gmail.com",
+            password: "$2b$05$HiWBD.A0c7oAzb7gxtyro.XbU8vGPUipMVutR4kOplsBZY4wrT0Sy"
+          }),
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
