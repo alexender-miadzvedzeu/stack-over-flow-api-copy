@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"admin\"\n}",
+							"raw": "{\n    \"email\": \"user@gmail.com\",\n    \"password\": \"user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -43,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"user@gmail.com\",\n    \"password\": \"user\"\n}",
+							"raw": "{\n    \"email\": \"user1@gmail.com\",\n    \"password\": \"user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -123,7 +123,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer ",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiZjBkNzM4YTYtNDQ1Zi00ZWExLTkzMzQtMWU3MzhmMWQ0ZjE0IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjp7InV1aWQiOiIzMGY2NmEyZi0yNzFkLTRlMzEtOGQ0MC0yMzQ1OTExYTU0YTYiLCJjcmVhdGVkQXQiOiIyMDIyLTEyLTA0VDIwOjE4OjM0LjM1MloiLCJ1cGRhdGVkQXQiOiIyMDIyLTEyLTA0VDIwOjE4OjM0LjM1MloiLCJ2YWx1ZSI6ImFkbWluIiwiZGVzY3JpcHRpb24iOiJDYW4gbWFuYWdlIGFsbCBkYXRhIn0sInNlc3Npb24iOiJlNmNkZmI5ZC1lNWY3LTQyYWYtOTQ2Mi00Yzg0MWQwOTI0OWQiLCJpYXQiOjE2NzAyMjU0ODQsImV4cCI6MTY3MDIyNjM4NH0.JVCZNCZuSFn8m38hjAWrJJShJkTM0beitTe-LmyXUQ0",
 								"type": "default"
 							}
 						],
@@ -191,7 +191,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer ",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNGVlNGY5ZTQtNjJjMi00ZThjLTgwYTMtNWExZjMzMDZlNTc5IiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20iLCJyb2xlIjp7InV1aWQiOiJiNGY5MTlkNi0wNWIzLTRmMjctYTc3Ni00NzMyNDc3N2FkNjMiLCJjcmVhdGVkQXQiOiIyMDIyLTEyLTA1VDA3OjMxOjUxLjkwMFoiLCJ1cGRhdGVkQXQiOiIyMDIyLTEyLTA1VDA3OjMxOjUxLjkwMFoiLCJ2YWx1ZSI6InVzZXIiLCJkZXNjcmlwdGlvbiI6IlByb3ZpZGVzIHRvIGNoYW5nZSBvbmx5IHRoZWlyIG93biBwb3N0cyJ9LCJzZXNzaW9uIjoiNDViMmRlNTYtZTY1Ny00Mzg0LWI5NTEtMTk3ODM4OWM4YjUwIiwiaWF0IjoxNjcwMjI1NTI3LCJleHAiOjE2NzAyMjY0Mjd9.89X8PC7MGqRl8nT07ogcjzqDTRkEGHN8MoRYjrQQtW0",
 								"type": "default"
 							}
 						],
@@ -263,31 +263,32 @@
 				},
 				{
 					"name": "Update question",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer ",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiNWJmMGI3ZjgtNWRlOS00N2RmLTlmYTYtZDExMTdmMDZiMTUwIiwiZW1haWwiOiJ1c2VyQGdtYWlsLmNvbSIsInJvbGUiOnsidXVpZCI6ImI0ZjkxOWQ2LTA1YjMtNGYyNy1hNzc2LTQ3MzI0Nzc3YWQ2MyIsImNyZWF0ZWRBdCI6IjIwMjItMTItMDVUMDc6MzE6NTEuOTAwWiIsInVwZGF0ZWRBdCI6IjIwMjItMTItMDVUMDc6MzE6NTEuOTAwWiIsInZhbHVlIjoidXNlciIsImRlc2NyaXB0aW9uIjoiUHJvdmlkZXMgdG8gY2hhbmdlIG9ubHkgdGhlaXIgb3duIHBvc3RzIn0sInNlc3Npb24iOiIyMzk1ZWYyNS0zYWM2LTQ4NDItOWFjMC1iNzcyOTBhNWFjNzgiLCJpYXQiOjE2NzAyMjU4OTksImV4cCI6MTY3MDIyNjc5OX0.NSPjdr1FcmfShNsl9T9fnJJOqWetFKAXyTsNDEVHb0Y",
 								"type": "default"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"uuid\": \"ec8cae58-2715-4c61-a195-af7eb74d9d21\",\n    \"title\": \"User question 1\",\n    \"description\": \"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n    \"rating\": \"inc\"\n}"
+							"raw": "{\n    \"uuid\": \"0c10f094-08c4-426d-b742-7642c7134fe2\",\n    \"title\": \"User question 1\",\n    \"description\": \"QQQQQQQQQLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\n    \"rating\": \"inc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/questions/de4b6d2c-844d-4ed1-91d6-3790104c35ac",
+							"raw": "{{baseUrl}}/api/questions",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"api",
-								"questions",
-								"de4b6d2c-844d-4ed1-91d6-3790104c35ac"
+								"questions"
 							]
 						}
 					},

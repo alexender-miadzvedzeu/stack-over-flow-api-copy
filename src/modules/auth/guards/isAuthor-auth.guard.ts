@@ -11,7 +11,7 @@ export class IsAuthorAuthGuard implements CanActivate {
     private reflector: Reflector,
     private dataSource: DataSource,
   ) {}
-  canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     try {
       const entity: EntityTarget<any> = this.reflector.getAllAndOverride(REPOSITORY_KEY, [
         context.getHandler(),
@@ -23,8 +23,8 @@ export class IsAuthorAuthGuard implements CanActivate {
       const role = request?.user?.role?.value;
       if (role === "admin") return true;
       const repo = this.dataSource.getRepository(entity);
-      return repo.find({ where: { author: { uuid: userUuid }}})
-        .then(data => data.some(q => q.uuid === contentUuid))
+      const data = await repo.find({ where: { author: { uuid: userUuid }}})
+      return data.some(q => q.uuid === contentUuid);
     } catch (e) {
       throw new UnauthorizedException()
     }

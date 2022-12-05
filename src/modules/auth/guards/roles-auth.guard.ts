@@ -13,7 +13,7 @@ export class RolesAuthGuard implements CanActivate {
     private reflector: Reflector,
     private authService: AuthService,
     ) {}
-  canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     try {
       const requaredRoles = this.reflector.getAllAndOverride(ROLES_KEY, [
         context.getHandler(),
@@ -24,20 +24,16 @@ export class RolesAuthGuard implements CanActivate {
       const authorisationHeader = request.headers.authorization;
       const tokenType = authorisationHeader?.split(" ")[0];
       const token = authorisationHeader?.split(" ")[1];
-  
       if (tokenType !== "Bearer" || !token) {
         throw new UnauthorizedException()
       }
-
       const user = this.jwtService.verify(token);
-      return this.authService.checkSession(user.session)
-      .then(session => {
-        if (session) {
-          request.user = user;
-          return requaredRoles.some(role => role === user.role.value);
-        }
-        throw new UnauthorizedException()
-      })
+      const session = await this.authService.checkSession(user.session)
+      if (session) {
+        request.user = user;
+        return requaredRoles.some(role => role === user.role.value);
+      }
+      throw new UnauthorizedException()
     } catch (e) {
       throw new UnauthorizedException()
     }
